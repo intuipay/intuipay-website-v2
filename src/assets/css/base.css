@@ -1,0 +1,49 @@
+/* 所有图片不可选中 */
+img {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  pointer-events: none;
+}
+
+
+.button-primary {
+  background: #0037C2;
+  border: 2px solid #E5E5E5;
+  box-shadow: 2px 6px 4px 0px #FFFFFF59 inset;
+  height: 56px;
+  width: 100%;
+  border-radius: 56px;
+  font-weight: 500;
+  font-size: 18px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-previous {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  color: #171717;
+  background: #FFFFFF;
+  border: 2px solid #E5E5E5;
+  box-shadow: 2px 6px 4px 0px #FFFFFF59 inset;
+  height: 56px;
+  width: 100%;
+  border-radius: 56px;
+
+  img {
+    width: 16px;
+    height: 16px;
+  }
+  
+}
