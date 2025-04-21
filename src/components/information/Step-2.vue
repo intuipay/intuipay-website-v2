@@ -90,7 +90,7 @@ onMounted(async () => {
     }
   });
   paymentMethodOtherList.value.forEach(item => {
-    item.amount = (amount.value.value * (1 + (+item.fee))) + ((+item.extra_fe || 0) * amount.value.usdTargetRate);
+    item.amount = (amount.value.value * (1 + (+item.fee))) + ((+item.extra_fee || 0) * amount.value.usdTargetRate);
     item.symbol = fromData.anotherSymbol;
   });
   // 获取paymentMethodsOther的amount最大的那个
@@ -105,7 +105,7 @@ const nextStep = (paymentMethod) => {
   setFromData({
     ...store.state.fromData,
     usdcAmount: amount.value.usd,
-    payAmount: (amount.value.value * (1 + (+paymentMethod.fee))) + ((+paymentMethod.extra_fe || 0) * amount.value.usdTargetRate),
+    payAmount: (amount.value.value * (1 + (+paymentMethod.fee))) + ((+paymentMethod.extra_fee || 0) * amount.value.usdTargetRate),
     processingFee: paymentMethod.processingFee,
     fxMarkupRate: paymentMethod.fxMarkupRate,
     additionalFee: paymentMethod.additionalFee,
@@ -225,7 +225,7 @@ const nextStep = (paymentMethod) => {
                   <div class="list-item-content-bd-top-left-title">
                     <div class="list-item-content-bd-top-left-title-text">{{ paymentMethod.name }}</div>
                     <div class="list-item-content-bd-top-left-title-amount">
-                      <p v-if="paymentMethod.name.includes('USDC')">{{ (+amount.usd).toLocaleString(undefined,
+                      <p v-if="paymentMethod.name.includes('USDC')">{{ (+amount.usd || 0).toLocaleString(undefined,
                         { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }} USDC</p>
                       <p v-else>{{ paymentMethod?.amount?.toLocaleString(undefined, {
                         minimumFractionDigits:
