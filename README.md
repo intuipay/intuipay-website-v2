@@ -12,12 +12,14 @@
 
 <br>
 
+
 ## Cross-border Tuition Payment Remains Stuck While Global Remittance Undergoes Revolution
 <img src="./images/tokenization & swift.png" alt="gap" width="800">
 
 > "If SWIFT is the postal service, tokenization is email itself - assets move directly and instantly, sidestepping intermediaries." - Larry Fink (Founder & CEO, BlackRock)
 
 <br>
+
 
 ## International Tuition Payments Are Broken
 <img src="./images/problem.png" alt="problem" width="800">
@@ -29,6 +31,7 @@ For example, a Chinese student going to Emory University pay ~$73,000 per financ
 
 <br>
 
+
 ## Average remittance costs by funding instrument (% of transfer)
 <img src="./images/rate comparison.png" alt="problem with data" width="800">
 Average remittance costs via SWIFT (Society for Worldwide Interbank Financial Telecommunications), the most common method for international payment transfers, is ~8% as of december 2023. That of credit / debit card (lowest in the chart) is ~5.2%. This is a significant amount especially in high-volume / high-amount transfers like tuition / study-abroad situations where $80B+ flow, growing at 6+% YoY in and out each year.
@@ -36,6 +39,7 @@ Average remittance costs via SWIFT (Society for Worldwide Interbank Financial Te
 Source: Bloomberg, The World Bank, and Coinbase.
 
 <br>
+
 
 ## A Massive, Growing Market Yet to be Captured
 <img src="./images/market opportunity.png" alt="market opportunity" width="800">
@@ -47,6 +51,7 @@ While both markets are strict in terms of cross-border payment policies, there a
 
 <br>
 
+
 ## There’s No Border in Crypto
 <img src="./images/comparison.png" alt="comp advantage" width="800">
 
@@ -56,6 +61,7 @@ The comparison here is very clear: Intuipay is (1) faster, (2) cheaper, (3) more
 Leveraging crypto's speed & cost efficiency while abstracting its complexity for mainstream users, intuipay is capable of becoming the global tuition payment standard.
 
 <br>
+
 
 ## Simplified User Journey
 <img src="./images/user journey.png" alt="journey" width="800">
@@ -75,6 +81,7 @@ For universities, not only is blockchain complexity hideen, they also receive fu
 
 <br>
 
+
 ## Layed Architecture
 <img src="./images/tech stack.png" alt="tech stack" width="800">
 
@@ -86,6 +93,7 @@ For universities, not only is blockchain complexity hideen, they also receive fu
 
 <br>
 
+
 ## Process Flow with Aggregator Engine & Direct Payment
 <img src="./images/process flow.png" alt="process flow 1" width="800">
 The defacult system process flow uses an aggregator engine that optimizes for:
@@ -96,11 +104,13 @@ This engine connects user payments to university systems through blockchain tech
 
 <br>
 
+
 ## Process Flow with Reserve & Yield Generation
 <img src="./images/process flow - exploring.png" alt="process flow 2" width="800">
 Alternative system process flow for regions with strict policies - instead of directly transfering, intuipay uses its reserve to provide liquidity during the transfers to enable instant settlements without undergoing complex processes upfront. This also serves as a stage 2 exploration where excess or early-stored tuition payments can be leveraged to generate yields.
 
 <br>
+
 
 ## Differentiation from Established Players
 <img src="./images/comp landscape.png" alt="competition" width="800">
@@ -108,11 +118,13 @@ The international tuition payment space is currently fragmented with solutions t
 
 <br>
 
+
 ## Revenue Streams
 <img src="./images/rev model.png" alt="revenue model" width="800">
 IntuiPay's business model is designed to capture value from multiple stakeholders while remaining significantly more affordable than incumbent solutions. The primary revenue engine is a tiered transaction fee structure of 0.5-3% charged to students—notably lower than the 3-8% typically charged by banks and traditional payment providers. This sliding scale approach accounts for the large variation in tuition amounts across different countries and institutions, ensuring accessibility for students from developing economies while capturing appropriate value from high-dollar transactions.
 
 <br>
+
 
 ## Establishing Key Partnerships to Validate Solution 
 <img src="./images/partnerships.png" alt="partnerships" width="800">
@@ -138,6 +150,7 @@ Together, these interconnected partnerships create a foundation for rapid growth
 
 <br>
 
-## Establishing Key Partnerships to Validate Solution 
+## Logical Extensions to Explore: Payment Rail for On-chain Student Loans
 <img src="./images/extensions.png" alt="partnerships" width="800">
 
+One of the primary use cases for Intuipay is serving as payment rails for onchain student loans. After student loans are tokenized and students raise funds for their tuition and living expenses, the funds stay onchain and require an intuitive channel to process and off-ramp - intuipay serves as the optimal channel.
