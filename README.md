@@ -32,8 +32,10 @@ For example, a Chinese student going to Emory University pay ~$73,000 per financ
 ## Average remittance costs by funding instrument (% of transfer)
 <img src="./images/rate comparison.png" alt="problem with data" width="800">
 Average remittance costs via SWIFT (Society for Worldwide Interbank Financial Telecommunications), the most common method for international payment transfers, is ~8% as of december 2023. That of credit / debit card (lowest in the chart) is ~5.2%. This is a significant amount especially in high-volume / high-amount transfers like tuition / study-abroad situations where $80B+ flow, growing at 6+% YoY in and out each year.
-
+&nbsp;
 Source: Bloomberg, The World Bank, and Coinbase.
+
+<br>
 
 ## A Massive, Growing Market Yet to be Captured
 <img src="./images/market opportunity.png" alt="market opportunity" width="800">
@@ -43,6 +45,7 @@ Among all the key corridors in the global market, Intuipay will focus on China (
 
 While both markets are strict in terms of cross-border payment policies, there are methods to fulfill the requirements while being compliant. Being compliant could be a key barrier of entry and a long-term competitive advantage down the line.
 
+<br>
 
 ## There’s No Border in Crypto
 <img src="./images/comparison.png" alt="comp advantage" width="800">
@@ -52,6 +55,7 @@ The comparison here is very clear: Intuipay is (1) faster, (2) cheaper, (3) more
 &nbsp;
 Leveraging crypto's speed & cost efficiency while abstracting its complexity for mainstream users, intuipay is capable of becoming the global tuition payment standard.
 
+<br>
 
 ## Simplified User Journey
 <img src="./images/user journey.png" alt="journey" width="800">
@@ -69,6 +73,8 @@ The journey seems complicated but 90%+ happen only in the back-end, users from b
 For parents / students, all blockchain complexity is hidden - students just see familiar payment methods and much faster and cheaper results.
 For universities, not only is blockchain complexity hideen, they also receive funds faster with less overhead and fewer reconciliation issues.
 
+<br>
+
 ## Layed Architecture
 <img src="./images/tech stack.png" alt="tech stack" width="800">
 
@@ -78,6 +84,8 @@ For universities, not only is blockchain complexity hideen, they also receive fu
 - **Conversion Layer**: (On & Off-ramp) Working with Circle; consider to work with MoonPay, Binance, OKX, and Stripe
 - **Compliance Layer**: (KYC/AML) Considering Elliptic and Onfido
 
+<br>
+
 ## Process Flow with Aggregator Engine & Direct Payment
 <img src="./images/process flow.png" alt="process flow 1" width="800">
 The defacult system process flow uses an aggregator engine that optimizes for:
@@ -86,17 +94,25 @@ The defacult system process flow uses an aggregator engine that optimizes for:
 - Security scoring
 This engine connects user payments to university systems through blockchain technology.
 
+<br>
+
 ## Process Flow with Reserve & Yield Generation
 <img src="./images/process flow - exploring.png" alt="process flow 2" width="800">
 Alternative system process flow for regions with strict policies - instead of directly transfering, intuipay uses its reserve to provide liquidity during the transfers to enable instant settlements without undergoing complex processes upfront. This also serves as a stage 2 exploration where excess or early-stored tuition payments can be leveraged to generate yields.
+
+<br>
 
 ## Differentiation from Established Players
 <img src="./images/comp landscape.png" alt="competition" width="800">
 The international tuition payment space is currently fragmented with solutions that fail to address the core issues of speed, cost, and transparency. IntuiPay stands out by leveraging blockchain technology in a way that's invisible to end-users while delivering tangible benefits. Unlike traditional banking wire transfers that take up to a week and charge 3-7% in fees, IntuiPay completes transactions in under an hour at roughly a third of the cost.
 
+<br>
+
 ## Revenue Streams
 <img src="./images/rev model.png" alt="revenue model" width="800">
 IntuiPay's business model is designed to capture value from multiple stakeholders while remaining significantly more affordable than incumbent solutions. The primary revenue engine is a tiered transaction fee structure of 0.5-3% charged to students—notably lower than the 3-8% typically charged by banks and traditional payment providers. This sliding scale approach accounts for the large variation in tuition amounts across different countries and institutions, ensuring accessibility for students from developing economies while capturing appropriate value from high-dollar transactions.
+
+<br>
 
 ## Establishing Key Partnerships to Validate Solution 
 <img src="./images/partnerships.png" alt="partnerships" width="800">
@@ -119,3 +135,9 @@ The cornerstone of our market entry strategy is our showcase university partners
 Our distribution partnerships with trusted student-facing organizations—including major study abroad agencies and international student associations—create organic growth channels by leveraging existing trust relationships. Rather than building credibility from scratch, these partnerships allow us to tap into established networks where payment recommendations carry significant weight.
 
 Together, these interconnected partnerships create a foundation for rapid growth while addressing the key concerns of all stakeholders in the international education payment journey.
+
+<br>
+
+## Establishing Key Partnerships to Validate Solution 
+<img src="./images/extensions.png" alt="partnerships" width="800">
+
