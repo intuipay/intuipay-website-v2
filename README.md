@@ -2,7 +2,7 @@
 
 <img src="./images/intuipay-blue.png" alt="logo" width="200" height="200">
 
-*Pay international tuition faster, cheaper, smarter | built only on EDU Chain *
+*Pay international tuition faster, cheaper, smarter | built only on EDU Chain*
 - Project Link: [intuipay website](https://intuipay-v1.pages.dev/)
 - Demo Video: [demo on youtube](https://youtu.be/_OmHL2hD_5U)
 - Pitch Video: [pitch on youtube](https://youtu.be/xUnesBvb38k)
