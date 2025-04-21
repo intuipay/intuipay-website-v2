@@ -3,11 +3,11 @@
 <img src="./images/intuipay-blue.png" alt="logo" width="200" height="200">
 
 *Pay international tuition faster, cheaper, smarter*
-- Link: [Intuipay](https://intuipay-v1.pages.dev/)
-- Demo Video: 
-- Pitch Video: 
-- Deck: 
-- Github: [intuipay/intuipay-v1](https://github.com/intuipay/intuipay-v1)
+- Project Link: [intuipay website](https://intuipay-v1.pages.dev/)
+- Demo Video: [demo on youtube](https://youtu.be/_OmHL2hD_5U)
+- Pitch Video: [pitch on youtube](https://youtu.be/xUnesBvb38k)
+- Deck: [pitch deck](https://docsend.com/v/mj427/intuipay-v1)
+- Github: [intuipay-v1](https://github.com/intuipay/intuipay-v1)
 - Twitter: [@intuipay](https://x.com/intuipay)
 
 <br>
