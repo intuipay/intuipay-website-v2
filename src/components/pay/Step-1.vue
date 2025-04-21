@@ -40,8 +40,8 @@ const disconnectWallet = async () => {
           <p v-if="store.state.fromData?.paymentMethod?.includes('USDC')" class="usdc-amount">{{ store?.state?.fromData?.usdcAmount.toLocaleString(undefined, {minimumFractionDigits: 2,maximumFractionDigits: 2}) }} USDC</p>
           <p v-else class="usdc-amount">{{ store?.state?.fromData?.payAmount?.toLocaleString(undefined, {minimumFractionDigits: 2,maximumFractionDigits: 2}) }} {{ store?.state?.fromData?.anotherSymbol }}</p>
           <span v-if="store?.state?.fromData?.paymentMethod?.includes('USDC')">
-            <del class="yen">{{ (store?.state?.fromData?.maxAmount * store?.state?.fromData?.usdTargetRate)?.toLocaleString(undefined, {minimumFractionDigits: 2,maximumFractionDigits: 2}) }} USDC</del>
-            <span class="saved">(saved <span class="saved-amount">{{ ((store?.state?.fromData?.maxAmount * store?.state?.fromData?.usdTargetRate) - (store?.state?.fromData?.payAmount * store?.state?.fromData?.usdTargetRate)).toLocaleString(undefined, {minimumFractionDigits: 2,maximumFractionDigits: 2}) }} USDC</span>)</span>
+            <del class="yen">{{ (store?.state?.fromData?.maxAmount / store?.state?.fromData?.usdTargetRate)?.toLocaleString(undefined, {minimumFractionDigits: 2,maximumFractionDigits: 2}) }} USDC</del>
+            <span class="saved">(saved <span class="saved-amount">{{ ((store?.state?.fromData?.maxAmount / store?.state?.fromData?.usdTargetRate) - (store?.state?.fromData?.payAmount / store?.state?.fromData?.usdTargetRate)).toLocaleString(undefined, {minimumFractionDigits: 2,maximumFractionDigits: 2}) }} USDC</span>)</span>
           </span>
           <span v-else>
             <del class="yen">{{ store?.state?.fromData?.maxAmount?.toLocaleString(undefined, {minimumFractionDigits: 2,maximumFractionDigits: 2}) }} {{ store?.state?.fromData?.anotherSymbol }}</del>

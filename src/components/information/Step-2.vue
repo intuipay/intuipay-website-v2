@@ -23,24 +23,37 @@ const fetchAmount = async (source, target, amt) => {
   } else {
     currencies = `USD,${target}`
   }
-
+  console.log(currencies)
   if (currencies === '') {
     amount.value = {
       value: amt,
       usd: amt,
       rate: 1,
+      usdRate: 1,
+      usdTargetRate: 1,
     }
     return;
   } else {
     const response = await fetch(`https://apilayer.net/api/live?access_key=c00b1d196651f1245a3e4410df9863db&currencies=USD,${target}&source=${source}`);
     const data = await response.json();
     if (data.success) {
-      amount.value = {
-        value: (data.quotes[`${source}${target}`] * amt),
-        usd: source === 'USD' ? amt : (data.quotes[`${source}USD`] * amt),
-        rate: data.quotes[`${source}${target}`],
-        usdRate: source === 'USD' ? 1 : data.quotes[`${source}USD`],
-        usdTargetRate: source === 'USD' ? data.quotes[`${source}${target}`] : (data.quotes[`${source}USD`] / data.quotes[`${source}${target}`]),
+      if (target === source) {
+        amount.value = {
+          value: amt,
+          usd: (data.quotes[`${source}USD`] * amt),
+          rate: 1,
+          usdRate: data.quotes[`${source}USD`],
+          usdTargetRate: data.quotes[`${source}USD`],
+        }
+      }
+      else {
+        amount.value = {
+          value: (data.quotes[`${source}${target}`] * amt), // 目标货币金额
+          usd: source === 'USD' ? amt : (data.quotes[`${source}USD`] * amt), // 美元金额
+          rate: data.quotes[`${source}${target}`], // 目标货币对汇款货币汇率
+          usdRate: source === 'USD' ? 1 : data.quotes[`${source}USD`], // 目标货币对美元汇率
+          usdTargetRate: source === 'USD' ? data.quotes[`${source}${target}`] : (data.quotes[`${source}${target}`] / data.quotes[`${source}USD`]) // 汇款货币对美元汇率
+        }
       }
     }
   }
@@ -110,8 +123,8 @@ const nextStep = (paymentMethod) => {
     <div class="step-tags">
       <div class="step-tag" style="display: flex; align-items: center; gap: 4px;">
         <span>Best Price Guaranteed</span> Subject to terms and conditions
-        <n-tooltip trigger="hover" arrow-point-to-center
-          style="padding: 12px 16px;border-radius: 8px; width: 755px;" placement="bottom">
+        <n-tooltip trigger="hover" arrow-point-to-center style="padding: 12px 16px;border-radius: 8px; width: 755px;"
+          placement="bottom">
           <template #trigger>
             <div>
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -132,25 +145,44 @@ const nextStep = (paymentMethod) => {
           </template>
           <div>
             <p class="tooltip-text">
-              <span>Best Price Guarantee Terms and Conditions</span><br />Intuipay aims to provide the best price for international tuition payments. If you find a better rate using your preferred payment method (not only just local currency bank transfer, but also other payment methods, including alipay, online debit / credit cards, e-wallets, online banking, etc.) within two hours of booking with Intuipay, we will match it.
+              <span>Best Price Guarantee Terms and Conditions</span><br />Intuipay aims to provide the best price for
+              international tuition payments. If you find a better rate using your preferred payment method (not only
+              just local
+              currency bank transfer, but also other payment methods, including alipay, online debit / credit cards,
+              e-wallets,
+              online banking, etc.) within two hours of booking with Intuipay, we will match it.
             </p>
             <p class="tooltip-text" style="margin-top: 16px;">
               <span>Best Price Guarantee Eligibility and Criteria</span>
             </p>
             <p class="tooltip-text" style="margin-top: 8px;">
-              1. <span>Exclusion of Payments With Discount Codes. </span>If you are redeeming a discount code in connection with your payment, you are <span>NOT</span> eligible for Best Price Guarantee.
+              1. <span>Exclusion of Payments With Discount Codes. </span>If you are redeeming a discount code in
+              connection with
+              your payment, you are <span>NOT</span> eligible for Best Price Guarantee.
             </p>
             <p class="tooltip-text" style="margin-top: 8px;">
-              2. <span>Request Amount:</span>Valid only for the amount requested (in the intended recipient's billing currency) in your original submission.
+              2. <span>Request Amount:</span>Valid only for the amount requested (in the intended recipient's billing
+              currency) in
+              your original submission.
             </p>
             <p class="tooltip-text" style="margin-top: 8px;">
-              3. <span>Exchange Rates and Rate Sources:</span>Rates quoted for forex currency exchange without a bank transfer are NOT eligible. Indicative rates, mid-market rates, or quotes from sources like Yahoo rates, Google rates, or similar foreign exchange rate providers are NOT acceptable forms of proof.
+              3. <span>Exchange Rates and Rate Sources:</span>Rates quoted for forex currency exchange without a bank
+              transfer are
+              NOT eligible. Indicative rates, mid-market rates, or quotes from sources like Yahoo rates, Google rates,
+              or similar
+              foreign exchange rate providers are NOT acceptable forms of proof.
             </p>
             <p class="tooltip-text" style="margin-top: 8px;">
-              4. <span>Fee Inclusion:</span>The total amount quoted by your preferred payment method should include all fees associated with sending the same amount to the same country via Intuipay. If the associated fees potentially charged are not included, we may apply a flat fee based on market-standard bank charges for wire transfers.
+              4. <span>Fee Inclusion:</span>The total amount quoted by your preferred payment method should include all
+              fees
+              associated with sending the same amount to the same country via Intuipay. If the associated fees
+              potentially charged
+              are not included, we may apply a flat fee based on market-standard bank charges for wire transfers.
             </p>
             <p class="tooltip-text" style="margin-top: 8px;">
-              5. <span>Time Frame:</span> Foreign exchange rate and associated fees comparison should be within a two-hour time frame of the booking on Intuipay.
+              5. <span>Time Frame:</span> Foreign exchange rate and associated fees comparison should be within a
+              two-hour time
+              frame of the booking on Intuipay.
             </p>
             <p class="tooltip-text" style="margin-top: 8px;">
               6. <span>Limit on Requests:</span> Limit of one approved request per payer within a 72-hour period.
@@ -199,22 +231,17 @@ const nextStep = (paymentMethod) => {
                         minimumFractionDigits:
                           2, maximumFractionDigits: 2
                       }) || 0 }} {{ paymentMethod?.symbol }}</p>
-                      <span v-if="paymentMethod.name.includes('USDC')"> <del>{{ (maxAmount * (amount.usdTargetRate ||
-                        1))?.toLocaleString(undefined,
+                      <span v-if="paymentMethod.name.includes('USDC')"> <del>{{ (maxAmount / (amount.usdTargetRate || 1))?.toLocaleString(undefined,
                           { minimumFractionDigits: 2, maximumFractionDigits: 2 }) || 0 }} USDC</del>
                         (saved
-                        <span>{{ ((maxAmount * (amount.usdTargetRate || 1)) - (paymentMethod?.amount *
-                          (amount.usdTargetRate ||
-                            1)))?.toLocaleString(undefined,
-                              { minimumFractionDigits: 2, maximumFractionDigits: 2 }) || 0
-                        }} USDC</span>)</span>
+                        <span>{{ ((maxAmount / (amount.usdTargetRate || 1)) - (paymentMethod?.amount / (amount.usdTargetRate || 1)))?.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) || 0 }} USDC</span>)</span>
                       <span v-else> <del>{{ maxAmount?.toLocaleString(undefined,
                         { minimumFractionDigits: 2, maximumFractionDigits: 2 }) || 0 }} {{ paymentMethod?.symbol
                           }}</del>
                         (saved
                         <span>{{ ((maxAmount || 0) - (paymentMethod?.amount || 0))?.toLocaleString(undefined,
                           { minimumFractionDigits: 2, maximumFractionDigits: 2 }) || 0
-                        }} {{ paymentMethod?.symbol }}</span>)</span>
+                          }} {{ paymentMethod?.symbol }}</span>)</span>
                     </div>
                   </div>
                 </div>
@@ -244,7 +271,8 @@ const nextStep = (paymentMethod) => {
                   <img src="../../assets/images/information/info.svg" alt="info" /><span>Important info</span>
                 </div>
                 <div>
-                  <img src="../../assets/images/information/arrow.svg" alt="arrow" :style="{ transform: paymentMethod.showNote ? 'rotate(0deg)' : 'rotate(180deg)' }" />
+                  <img src="../../assets/images/information/arrow.svg" alt="arrow"
+                    :style="{ transform: paymentMethod.showNote ? 'rotate(0deg)' : 'rotate(180deg)' }" />
                 </div>
               </div>
               <div @click.stop v-show="paymentMethod.showNote" class="list-item-content-bd-bottom-bd"
@@ -273,7 +301,7 @@ const nextStep = (paymentMethod) => {
                       (saved
                       <span>{{ ((maxAmount || 0) - (paymentMethod.amount ||
                         0))?.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) || 0
-                      }} {{ paymentMethod.symbol }}</span>)</span>
+                        }} {{ paymentMethod.symbol }}</span>)</span>
                   </div>
                 </div>
               </div>
@@ -286,7 +314,8 @@ const nextStep = (paymentMethod) => {
                 <img src="../../assets/images/information/info.svg" alt="info" /><span>Important info</span>
               </div>
               <div>
-                <img src="../../assets/images/information/arrow.svg" alt="arrow" :style="{ transform: paymentMethod.showNote ? 'rotate(0deg)' : 'rotate(180deg)' }" />
+                <img src="../../assets/images/information/arrow.svg" alt="arrow"
+                  :style="{ transform: paymentMethod.showNote ? 'rotate(0deg)' : 'rotate(180deg)' }" />
               </div>
             </div>
             <div @click.stop v-show="paymentMethod.showNote" class="list-item-content-bd-bottom-bd"
