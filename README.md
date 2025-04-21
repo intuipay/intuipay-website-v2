@@ -29,6 +29,12 @@ For example, a Chinese student going to Emory University pay ~$73,000 per financ
 
 <br>
 
+## Average remittance costs by funding instrument (% of transfer)
+<img src="./images/rate comparison.png" alt="problem with data" width="800">
+Average remittance costs via SWIFT (Society for Worldwide Interbank Financial Telecommunications), the most common method for international payment transfers, is ~8% as of december 2023. That of credit / debit card (lowest in the chart) is ~5.2%. This is a significant amount especially in high-volume / high-amount transfers like tuition / study-abroad situations where $80B+ flow, growing at 6+% YoY in and out each year.
+
+Source: Bloomberg, The World Bank, and Coinbase.
+
 ## A Massive, Growing Market Yet to be Captured
 <img src="./images/market opportunity.png" alt="market opportunity" width="800">
 Among all the key corridors in the global market, Intuipay will focus on China (25%, 1.4M), India (29%, 1.6M) and their nearby countries / nations / regions. India and Greater China are the world's largest and fastest growing markets for education. It's important to note that both also have the history of investing heavily into education.
