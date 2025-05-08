@@ -60,7 +60,7 @@ onMounted(() => {
             </div>
             <div v-else>
               <div class="detail-label">Hash</div>
-              <div class="detail-value"><a :href="`https://edu-chain-testnet.blockscout.com/tx/${payment.tx?.transactionHash}`" target="_blank" rel="noopener noreferrer">{{ formatHash(payment.tx?.transactionHash) }}</a></div>
+              <div class="detail-value"><a :href="`https://devnet.pharosscan.xyz/tx/${payment.tx?.transactionHash}`" target="_blank" rel="noopener noreferrer">{{ formatHash(payment.tx?.transactionHash) }}</a></div>
             </div>
             <div>
               <div class="detail-label">Order ID</div>

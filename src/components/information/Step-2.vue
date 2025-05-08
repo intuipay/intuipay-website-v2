@@ -216,10 +216,6 @@ const nextStep = (paymentMethod) => {
                           <img :src="paymentMethod.icon" alt="logo" />
                         </div>
                       </template>
-                      <p class="tooltip-text">
-                        <span>Edu Chain</span><br />EDU Chain is the first decentralized blockchain for education built
-                        by Open Campus.
-                      </p>
                     </n-tooltip>
                   </div>
                   <div class="list-item-content-bd-top-left-title">

@@ -17,7 +17,7 @@ const formatHash = (hash) => {
 }
 
 const toExplorer = () => {
-  window.open(`https://edu-chain-testnet.blockscout.com/tx/${props.payment.tx.hash}`, '_blank')
+  window.open(`https://devnet.pharosscan.xyz/tx/${props.payment.tx.hash}`, '_blank')
 }
 </script>
 
