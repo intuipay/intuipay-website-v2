@@ -216,6 +216,9 @@ const nextStep = (paymentMethod) => {
                           <img :src="paymentMethod.icon" alt="logo" />
                         </div>
                       </template>
+                      <p class="tooltip-text">
+                        <span>Pharos</span><br />Pharos is an ultra-fast, EVM-compatible blockchain, designed to revolutionize finance by seamlessly connecting traditional and decentralized systems.
+                      </p>
                     </n-tooltip>
                   </div>
                   <div class="list-item-content-bd-top-left-title">
