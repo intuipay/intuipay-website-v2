@@ -297,12 +297,12 @@ onMounted(() => {
       <div class="radios">
         <div class="radio" @click="radiosType.promotions = !radiosType.promotions">
           <div class="box" :class="{ 'active': radiosType.promotions }"></div>
-          <div class="text">I would like to receive emails from Flywire about future discounts, promotions and offers
+          <div class="text">I would like to receive emails from Intuipay about future discounts, promotions and offers
           </div>
         </div>
         <div class="radio" @click="radiosType.terms = !radiosType.terms">
           <div class="box" :class="{ 'active': radiosType.terms }"></div>
-          <div class="text">I have read, understand, and agree to the Flywire <a href="#" target="_blank"
+          <div class="text">I have read, understand, and agree to the Intuipay <a href="#" target="_blank"
               rel="noopener noreferrer">Terms of Use</a> and <a href="#" target="_blank"
               rel="noopener noreferrer">Privacy Policy</a></div>
         </div>

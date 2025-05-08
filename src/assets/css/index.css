@@ -1,3 +1,7 @@
 @import './reset.css';
 @import './base.css';
 @import './font.css';
+
+.mt-6 {
+  margin-top: 24px;
+}

@@ -27,7 +27,7 @@ const toExplorer = () => {
 
     <div class="receipt-header">
       <div class="receipt-header-left">
-        <div class="pay-title">Pay in USDC On EDU Chain</div>
+        <div class="pay-title">Pay in USDC On Pharos</div>
         <div v-if="payment?.paymentMethod?.includes('USDC')" class="amount">{{ payment?.usdcAmount }} USDC</div>
         <div v-else class="amount">{{ payment?.currency }} {{ payment?.amount }}</div>
       </div>
@@ -84,9 +84,6 @@ const toExplorer = () => {
       <div class="hash-label">Hash</div>
       <div class="hash-value">
         <div class="hash-container">
-          <div class="chain-logo">
-            <img src="../../assets/images/pay/educhain.svg" alt="EDU Chain" />
-          </div>
           <div class="hash-text">{{ payment?.tx?.hash }}</div>
           <div class="arrow-icon">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

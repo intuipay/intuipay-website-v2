@@ -1,4 +1,4 @@
-import edu from '../assets/images/information/edu.png';
+import pharos from '../assets/images/information/pharos-logo.png';
 import usdc from '../assets/images/information/usdc.png';
 import alipay from '../assets/images/information/alipay.png';
 import unionpay from '../assets/images/information/unionpay.png';
@@ -10,20 +10,7 @@ import american from '../assets/images/information/american.png';
 
 export const paymentMethods = [
   {
-    name: 'EDU Chain in Chinese Yuan (CNY)',
-    icon: edu,
-    processingFee: 0,
-    fxMarkupRate: 0.01,
-    additionalFee: 0,
-    fee: '0.01',
-    description: 'Select payment method will take <span>~20-60 MINUTES</span>',
-    title: 'FAST & MOST POPULAR',
-    background: 'linear-gradient(180deg, #0037C2 0%, #217BE0 100%)',
-    note: `<p>Enjoy the fastest payment experience with funds arriving at your institution in 20-60 minutes and instant confirmation upon completion.</p><p>Your payment in CNY will be converted to USDC (a digital US dollar) and securely transferred via EDU Chain, our high-speed blockchain network.</p><p>Please have your payment method and institution invoice ready before starting the payment.</p>
-    <div style="margin-top: 24px;">Please note:</div><p>EDU Chain, an official partner of Intuipay, is the world’s first blockchain network designed specifically for education finance (edu-fi).</p><p>USDC is a stablecoin issued by Circle, an official partner of Intuipay, that maintains a 1:1 value with the US Dollar, ensuring your payment amount remains stable during transfer.</p><p>In some cases, we may require additional documentation to comply with relevant regulations.</p>`,
-  },
-  {
-    name: 'EDU Chain in USD Coin (USDC)',
+    name: 'Pharos in USD Coin (USDC)',
     icon: usdc,
     description: 'Select payment method will take <span>10 MINUTES</span>',
     processingFee: 0,
@@ -36,13 +23,27 @@ export const paymentMethods = [
       <p>Enjoy the fastest payment experience with funds arriving at your institution in 20-60 minutes and instant confirmation upon completion.</p>
       <p>You will be promoted to transfer the specified USDC amount to the beneficiary wallet address given at the end of the booking process. Intuipay will deliver your funds securely to your institution's bank account within minutes after confirmation on the blockchain.</p>
       <p>Student information will be required during the payment process to ensure proper routing.</p>
-      <p>Please note:</p>
-      <p>EDU Chain, an official partner of Intuipay, is the world’s first blockchain network designed specifically for education finance (edu-fi).</p>
+      <div class="mt-6">Please note:</div>
       <p>USDC is a stablecoin issued by Circle, an official partner of Intuipay, that maintains a 1:1 value with the US Dollar, ensuring your payment amount remains stable during transfer.</p>
       <p>In some cases, we may require additional documentation to comply with relevant regulations.</p>
       <p>You must have sufficient USDC in a compatible wallet to use this payment method.</p>
     `,
-  }
+  },
+  {
+    name: 'Pharos in Chinese Yuan (CNY)',
+    icon: pharos,
+    processingFee: 0,
+    fxMarkupRate: 0.01,
+    additionalFee: 0,
+    fee: '0.01',
+    description: 'Select payment method will take <span>~20-60 MINUTES</span>',
+    title: 'FAST & MOST POPULAR',
+    background: 'linear-gradient(180deg, #0037C2 0%, #217BE0 100%)',
+    note: `<p>Enjoy the fastest payment experience with funds arriving at your institution in 20-60 minutes and instant confirmation upon completion.</p><p>Your payment in CNY will be converted to USDC (a digital US dollar) and securely transferred via EDU Chain, our high-speed blockchain network.</p><p>Please have your payment method and institution invoice ready before starting the payment.</p>
+    <div class="mt-6">Please note:</div>
+    <p>USDC is a stablecoin issued by Circle, an official partner of Intuipay, that maintains a 1:1 value with the US Dollar, ensuring your payment amount remains stable during transfer.</p>
+    <p>In some cases, we may require additional documentation to comply with relevant regulations.</p>`,
+  },
 ];
 
 export const paymentMethodsOther = [

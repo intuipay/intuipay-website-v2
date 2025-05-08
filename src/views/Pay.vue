@@ -36,7 +36,7 @@ createAppKit({
   projectId,
   features: {
     email: false,
-    socials: [], 
+    socials: [],
     emailShowWallets: true,
   }
 })
@@ -147,8 +147,8 @@ onMounted(() => {
 
       <div class="pay-main">
         <div class="pay-main-left">
-          <Step1 v-if="step === 1" :loading="loading" @pay="pay" @connect="connect" />
-          <Step2 v-else-if="step === 2" :payment="payment" />
+          <Step1 v-if="step === 10" :loading="loading" @pay="pay" @connect="connect" />
+          <Step2 v-else-if="step === 1" :payment="payment" />
           <Step3 v-else-if="step === 3" :payment="payment" />
         </div>
         <div class="pay-main-right">

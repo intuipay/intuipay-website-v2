@@ -245,22 +245,6 @@ const nextStep = (paymentMethod) => {
                     </div>
                   </div>
                 </div>
-                <div class="list-item-content-bd-top-right">
-                  <n-tooltip trigger="hover" arrow-point-to-center
-                    style="width: 255px;background: #1C1C1CCC;padding: 12px 16px;border-radius: 8px;">
-                    <template #trigger>
-                      <div>
-                        <img src="../../assets/images/information/frame1.svg" alt="right" />
-                      </div>
-                    </template>
-                    <p class="tooltip-text">
-                      <span>Sponsored by EDU Chain.</span><br />Typical conversion costs from fiat currencies like USD
-                      and
-                      CNY to stablecoins like USDC and USDT, also known as on-ramp costs, range from 0-5%. This cost is
-                      sponsored by EDU Chain.
-                    </p>
-                  </n-tooltip>
-                </div>
               </div>
               <div class="button-primary" :style="{ background: paymentMethod.background }"
                 @click="nextStep(paymentMethod)" v-html="paymentMethod.description"></div>

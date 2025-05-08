@@ -175,7 +175,7 @@ onMounted(() => {
           <img src="../assets/images/home/frame4.svg" alt="" class="bg">
           <img src="../assets/images/home/frame5.svg" alt="" class="bg">
           <div class="ft-img-wrapper" data-aos="fade-up" data-aos-delay="400">
-            <img src="../assets/images/home/frame18.png" alt="" class="ft-img">
+            <img src="../assets/images/home/frame18.webp" alt="" class="ft-img">
           </div>
           <div class="section-content-hd" data-aos="fade-up" data-aos-delay="100">
             <img src="../assets/images/home/ellipse.png" alt="">
@@ -239,10 +239,10 @@ onMounted(() => {
       <img src="../assets/images/home/frame109.svg" alt="" class="settlement-img rotate180">
       <div class="img-list">
         <div class="img-list-item" data-aos="fade-up" data-aos-delay="400">
-          <img src="../assets/images/home/frame100.png" alt="">
+          <img src="../assets/images/home/frame100.webp" alt="">
         </div>
         <div class="img-list-item" data-aos="fade-up" data-aos-delay="300">
-          <img src="../assets/images/home/frame99.png" alt="">
+          <img src="../assets/images/home/frame99.webp" alt="">
         </div>
         <div class="img-list-item" data-aos="fade-up" data-aos-delay="500">
           <img src="../assets/images/home/frame101.png" alt="">

@@ -32,7 +32,7 @@ const disconnectWallet = async () => {
     <div class="step-1-amount">
       <div class="usdc-icon">
         <img v-if="store.state.fromData?.paymentMethod?.includes('USDC')" src="../../assets/images/information/usdc.png" alt="">
-        <img v-else src="../../assets/images/information/edu.png" alt="">
+        <img v-else src="../../assets/images/information/pharos-logo.png" alt="">
       </div>
       <div class="amount-details">
         <p class="amount-title">{{ store.state.fromData?.paymentMethod }}</p>
@@ -75,24 +75,6 @@ const disconnectWallet = async () => {
     </div>
     <div v-else class="wallet-list">
       <img src="../../assets/images/pay/wallet.png" alt="">
-    </div>
-    <div class="sponsored-info">
-      <div class="sponsor-bell">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M10 3C7.10053 3 4.75003 5.35051 4.75003 8.25V11.3876L4.13131 12.0063C3.88106 12.2565 3.8062 12.6329 3.94163 12.9598C4.07706 13.2868 4.39612 13.5 4.75003 13.5H15.25C15.6039 13.5 15.923 13.2868 16.0584 12.9598C16.1939 12.6329 16.119 12.2565 15.8687 12.0063L15.25 11.3876V8.25C15.25 5.35051 12.8995 3 10 3Z"
-            fill="#F59E0B" />
-          <path d="M10 17C8.55025 17 7.375 15.8247 7.375 14.375H12.625C12.625 15.8247 11.4497 17 10 17Z"
-            fill="#F59E0B" />
-        </svg>
-      </div>
-      <div class="sponsor-text">
-        <p class="sponsor-title">Sponsored by EDU Chain.</p>
-        <p class="sponsor-description">
-          Typical conversion costs from fiat currencies like USD and CNY to stablecoins like USDC and USDT, also known
-          as on-ramp costs, range from 0-5%. This cost is sponsored by EDU Chain.
-        </p>
-      </div>
     </div>
   </div>
 </template>
