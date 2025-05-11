@@ -83,9 +83,9 @@ For universities, not only is blockchain complexity hideen, they also receive fu
 
 
 ## Layed Architecture
-<img src="./images/tech stack.png" alt="tech stack" width="800">
+<img src="./images/tech stack.png" alt="integrations v2" width="800">
 
-- **User Interface Layer**: Using walletconnect and integrating with traditional, regional / local payment methods
+- **User Interface Layer**: Using walletconnect, MetaMask, Phantom for web3-native routes and integrating with traditional, regional / local payment methods like UPI, Alipay, Visa, Mastercard, etc.
 - **Blockchain Layer**: Built on Pharos; will be a multi-chain project (EDU Chain, Solana, Stellar, etc.) to prevent blockchain downtime and minimize network congestion and fees
 - **Custody & Security Layer**: Managed by Circle and Fireblocks
 - **Conversion Layer**: (On & Off-ramp) Working with Circle; consider to work with MoonPay, Binance, OKX, and Stripe
@@ -127,7 +127,7 @@ IntuiPay's business model is designed to capture value from multiple stakeholder
 
 
 ## Establishing Key Partnerships to Validate Solution 
-<img src="./images/partnerships.png" alt="partnerships" width="800">
+<img src="./images/partnerships v2.png" alt="partnerships" width="800">
 
 IntuiPay is establishing key partnerships across five essential categories that create a comprehensive ecosystem for revolutionizing international tuition payments:
 
