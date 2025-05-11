@@ -131,19 +131,19 @@ IntuiPay's business model is designed to capture value from multiple stakeholder
 
 IntuiPay is establishing key partnerships across five essential categories that create a comprehensive ecosystem for revolutionizing international tuition payments:
 
-1. Blockchain Infrastructure Partners
+**1. Blockchain Infrastructure Partners**:
 Intuipay has partnered with Pharos, EDU Chain and Solana and in the process of onboarding Stellar. The foundations will provide critical technical foundation while subsidizing processing fees during the initial growth phase. This arrangement enables our headline 0% processing fee offer to early adopters without sacrificing revenue, creating a powerful customer acquisition tool that traditional payment providers cannot match.
 
-2. On/Off-Ramp Partners
+**2. On/Off-Ramp Partners**:
 Intuipay has onboarded Circle as a partner, leveraging USDC, the institution-ready stablecoin, and its on- and off-chain network to effectively eliminate the traditional friction and costs associated with converting between fiat and digital currencies. This removes a significant barrier to adoption by making the crypto components completely invisible to end users.
 
-3. Institutional Credibility Partners
+**3. Institutional Credibility Partners**:
 To establish institutional legitimacy, we are in the process of establishing partnerships with projects such as Visa, Mastercard, Unionpay, Standard Chartered, HSBC, etc. These relationships are particularly crucial for reassuring risk-averse stakeholders like university administrators and concerned parents who might otherwise hesitate to adopt a blockchain-based solution for large financial transactions.
 
-4. Showcase University Partners
+**4. Showcase University Partners**:
 The cornerstone of our market entry strategy is our showcase university partnerships with institutions like Emory, Wharton, and NTU Singapore. These relationships provide credible, real-world demonstrations of our system's effectiveness, with each partnership carefully selected to represent different geographic regions and student demographics.
 
-5. Distribution Partners
+**5. Distribution Partners**:
 Our distribution partnerships with trusted student-facing organizations—including major study abroad agencies and international student associations—create organic growth channels by leveraging existing trust relationships. Rather than building credibility from scratch, these partnerships allow us to tap into established networks where payment recommendations carry significant weight.
 
 Together, these interconnected partnerships create a foundation for rapid growth while addressing the key concerns of all stakeholders in the international education payment journey.
