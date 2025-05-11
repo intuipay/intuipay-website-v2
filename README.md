@@ -2,12 +2,12 @@
 
 <img src="./images/intuipay-blue.png" alt="logo" width="200" height="200">
 
-*Pay international tuition faster, cheaper, smarter | built only on EDU Chain*
-- Project Link: [intuipay website](https://intuipay-v1.pages.dev/)
-- Demo Video: [demo on youtube](https://youtu.be/_OmHL2hD_5U)
-- Pitch Video: [pitch on youtube](https://youtu.be/xUnesBvb38k)
-- Deck: [pitch deck](https://docsend.com/v/mj427/intuipay-v1)
-- Github: [intuipay-v1](https://github.com/intuipay/intuipay-v1)
+*Pay international tuition faster, cheaper, smarter | live on Pharos Devnet*
+- Project Link: [intuipay website](https://intuipay-website-v2.pages.dev/)
+- Demo Video: [demo on youtube](https://youtu.be/8U1hZSKTWpg)
+- Pitch Video: [pitch on youtube](https://youtu.be/NFpHrczG5nU)
+- Deck: [pitch deck](https://docsend.com/view/ayesdiffahjr23jj)
+- Github: [intuipay-v1](https://github.com/intuipay/intuipay-website-v2)
 - Twitter: [@intuipay](https://x.com/intuipay)
 
 <br>
@@ -86,8 +86,8 @@ For universities, not only is blockchain complexity hideen, they also receive fu
 <img src="./images/tech stack.png" alt="tech stack" width="800">
 
 - **User Interface Layer**: Using walletconnect and integrating with traditional, regional / local payment methods
-- **Blockchain Layer**: Built on EDU Chain; consider to integrate with Solana for alternative options
-- **Custody & Security Layer**: Managed by Fireblocks and AWS
+- **Blockchain Layer**: Built on Pharos; will be a multi-chain project (EDU Chain, Solana, Stellar, etc.) to prevent blockchain downtime and minimize network congestion and fees
+- **Custody & Security Layer**: Managed by Circle and Fireblocks
 - **Conversion Layer**: (On & Off-ramp) Working with Circle; consider to work with MoonPay, Binance, OKX, and Stripe
 - **Compliance Layer**: (KYC/AML) Considering Elliptic and Onfido
 
@@ -132,7 +132,7 @@ IntuiPay's business model is designed to capture value from multiple stakeholder
 IntuiPay is establishing key partnerships across five essential categories that create a comprehensive ecosystem for revolutionizing international tuition payments:
 
 1. Blockchain Infrastructure Partners
-Intuipay has partnered with EDU Chain and Solana and in the process of onboarding Stellar. The foundations will provide critical technical foundation while subsidizing processing fees during the initial growth phase. This arrangement enables our headline 0% processing fee offer to early adopters without sacrificing revenue, creating a powerful customer acquisition tool that traditional payment providers cannot match.
+Intuipay has partnered with Pharos, EDU Chain and Solana and in the process of onboarding Stellar. The foundations will provide critical technical foundation while subsidizing processing fees during the initial growth phase. This arrangement enables our headline 0% processing fee offer to early adopters without sacrificing revenue, creating a powerful customer acquisition tool that traditional payment providers cannot match.
 
 2. On/Off-Ramp Partners
 Intuipay has onboarded Circle as a partner, leveraging USDC, the institution-ready stablecoin, and its on- and off-chain network to effectively eliminate the traditional friction and costs associated with converting between fiat and digital currencies. This removes a significant barrier to adoption by making the crypto components completely invisible to end users.
