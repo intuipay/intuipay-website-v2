@@ -83,7 +83,7 @@ For universities, not only is blockchain complexity hideen, they also receive fu
 
 
 ## Layed Architecture
-<img src="./images/tech stack.png" alt="integrations v2" width="800">
+<img src="./images/integrations v2.png" alt="integrations v2" width="800">
 
 - **User Interface Layer**: Using walletconnect, MetaMask, Phantom for web3-native routes and integrating with traditional, regional / local payment methods like UPI, Alipay, Visa, Mastercard, etc.
 - **Blockchain Layer**: Built on Pharos; will be a multi-chain project (EDU Chain, Solana, Stellar, etc.) to prevent blockchain downtime and minimize network congestion and fees
