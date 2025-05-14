@@ -11,7 +11,7 @@ const maxAmount = ref(0);
 const loading = ref(false);
 const paymentMethodList = ref(paymentMethods);
 const paymentMethodOtherList = ref(paymentMethodsOther);
-// featch
+// fetch
 const fetchAmount = async (source, target, amt) => {
   let currencies = ''
   if (source === target) {
@@ -112,7 +112,7 @@ const nextStep = (paymentMethod) => {
     usdTargetRate: amount.value.usdTargetRate,
     rate: amount.value.rate,
     usdRate: amount.value.usdRate,
-    paymentMethod: paymentMethod.name,
+    paymentMethod: paymentMethod.action || paymentMethod.name,
     maxAmount: maxAmount.value,
   });
   emit('next');
@@ -209,17 +209,9 @@ const nextStep = (paymentMethod) => {
                 <div class="list-item-content-bd-top-left">
                   <div class="logo-icon">
                     <img v-if="paymentMethod.name.includes('USDC')" :src="paymentMethod.icon" alt="logo" />
-                    <n-tooltip v-else trigger="hover" arrow-point-to-center
-                      style="width: 255px;background: #1C1C1CCC;padding: 12px 16px;border-radius: 8px;">
-                      <template #trigger>
-                        <div>
-                          <img :src="paymentMethod.icon" alt="logo" />
-                        </div>
-                      </template>
-                      <p class="tooltip-text">
-                        <span>Pharos</span><br />Pharos is an ultra-fast, EVM-compatible blockchain, designed to revolutionize finance by seamlessly connecting traditional and decentralized systems.
-                      </p>
-                    </n-tooltip>
+                    <div v-else>
+                      <img :src="paymentMethod.icon" alt="logo" />
+                    </div>
                   </div>
                   <div class="list-item-content-bd-top-left-title">
                     <div class="list-item-content-bd-top-left-title-text">{{ paymentMethod.name }}</div>
@@ -245,8 +237,12 @@ const nextStep = (paymentMethod) => {
                   </div>
                 </div>
               </div>
-              <div class="button-primary" :style="{ background: paymentMethod.background }"
-                @click="nextStep(paymentMethod)" v-html="paymentMethod.description"></div>
+              <div
+                class="button-primary"
+                :style="{ background: paymentMethod.background }"
+                @click="nextStep(paymentMethod)"
+                v-html="paymentMethod.description"
+              />
             </div>
             <div v-if="paymentMethod.note" class="list-item-content-bd-bottom">
               <div class="list-item-content-bd-bottom-hd" @click="showNote(index, 1)">
@@ -588,6 +584,7 @@ const nextStep = (paymentMethod) => {
         border-radius: 50%;
         margin-top: 9px;
         margin-right: 8px;
+        flex-shrink: 0;
       }
 
       a {

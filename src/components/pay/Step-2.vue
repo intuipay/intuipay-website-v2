@@ -27,7 +27,7 @@ const toExplorer = () => {
 
     <div class="receipt-header">
       <div class="receipt-header-left">
-        <div class="pay-title">Pay in USDC On Pharos</div>
+        <div class="pay-title">Pay in USDC On Solana</div>
         <div v-if="payment?.paymentMethod?.includes('USDC')" class="amount">{{ payment?.usdcAmount }} USDC</div>
         <div v-else class="amount">{{ payment?.currency }} {{ payment?.amount }}</div>
       </div>

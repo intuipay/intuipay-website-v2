@@ -75,7 +75,7 @@ const nextStep = () => {
     message.error(error.value.studentPersonalEmail);
     return
   } else {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;  
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.value.studentPersonalEmail)) {
       error.value.studentPersonalEmail = 'Invalid email address';
       message.error(error.value.studentPersonalEmail);
@@ -196,7 +196,12 @@ onMounted(() => {
           </div>
         </div>
         <div class="form-item" :class="{ 'error': error.studentPersonalEmail }">
-          <input type="text" placeholder="Student Personal Email *" v-model="formData.studentPersonalEmail">
+          <input
+            name="email"
+            type="email"
+            placeholder="Student Personal Email *"
+            v-model="formData.studentPersonalEmail"
+          >
         </div>
         <div class="form-item" :class="{ 'error': error.studentMobileNumber }">
           <div class="code" @click.stop="showPhoneCodeList = !showPhoneCodeList">
@@ -208,7 +213,12 @@ onMounted(() => {
               </div>
             </div>
           </div>
-          <input type="number" placeholder="Student mobile number *" v-model="formData.studentMobileNumber">
+          <input
+            name="phone"
+            type="tel"
+            placeholder="Student mobile number *"
+            v-model="formData.studentMobileNumber"
+          >
         </div>
       </div>
       <div class="step-4-content-hint" style="margin-top: 16px;">Student Information</div>
@@ -227,13 +237,28 @@ onMounted(() => {
           </div>
         </div>
         <div class="form-item" :class="{ 'error': error.studentId }">
-          <input type="text" placeholder="Student lD *" v-model="formData.studentId">
+          <input
+            name="studentId"
+            type="text"
+            placeholder="Student lD *"
+            v-model="formData.studentId"
+          >
         </div>
         <div class="form-item" :class="{ 'error': error.studentFirstName }">
-          <input type="text" placeholder="First Name *" v-model="formData.studentFirstName">
+          <input
+            name="first-name"
+            type="text"
+            placeholder="First Name *"
+            v-model="formData.studentFirstName"
+          >
         </div>
         <div class="form-item" :class="{ 'error': error.studentLastName }">
-          <input type="text" placeholder="Last Name*" v-model="formData.studentLastName">
+          <input
+            name="last-name"
+            type="text"
+            placeholder="Last Name*"
+            v-model="formData.studentLastName"
+          >
         </div>
       </div>
       <div class="btns">

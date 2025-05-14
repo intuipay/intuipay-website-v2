@@ -1,4 +1,4 @@
-import pharos from '../assets/images/information/pharos-logo.png';
+import solana from '../assets/images/information/solana-logo.png';
 import usdc from '../assets/images/information/usdc.png';
 import alipay from '../assets/images/information/alipay.png';
 import unionpay from '../assets/images/information/unionpay.png';
@@ -10,7 +10,8 @@ import american from '../assets/images/information/american.png';
 
 export const paymentMethods = [
   {
-    name: 'Pharos in USD Coin (USDC)',
+    name: 'Solana in USD Coin (USDC)',
+    action: 'Pay USD Coin (USDC) on Solana',
     icon: usdc,
     description: 'Select payment method will take <span>10 MINUTES</span>',
     processingFee: 0,
@@ -30,8 +31,9 @@ export const paymentMethods = [
     `,
   },
   {
-    name: 'Pharos in Chinese Yuan (CNY)',
-    icon: pharos,
+    name: 'Solana in Chinese Yuan (CNY)',
+    action: 'Pay Chinese Yuan (CNY) on Solana',
+    icon: solana,
     processingFee: 0,
     fxMarkupRate: 0.01,
     additionalFee: 0,

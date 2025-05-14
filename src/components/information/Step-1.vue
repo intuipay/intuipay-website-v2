@@ -120,7 +120,14 @@ onMounted(() => {
           <div class="input">
             <div class="input-label">Amount*</div>
             <div class="input-content">
-              <input type="number" class="input-amount" min="0" v-model="amount" placeholder="Enter amount">
+              <input
+                type="number"
+                class="input-amount"
+                min="0"
+                name="amount"
+                v-model="amount"
+                placeholder="Enter amount"
+              >
             </div>
           </div>
         </div>

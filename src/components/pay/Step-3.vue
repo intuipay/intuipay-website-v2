@@ -20,7 +20,7 @@ const toExplorer = () => {
 
     <div class="receipt-header">
       <div class="receipt-header-left">
-        <div class="pay-title">Pay in USDC On Pharos</div>
+        <div class="pay-title">Pay in USDC On Solana</div>
         <div class="amount">{{ payment.amount }} USDC</div>
       </div>
       <div class="receipt-header-left">

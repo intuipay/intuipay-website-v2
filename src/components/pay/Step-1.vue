@@ -87,7 +87,7 @@ onMounted(async () => {
       <div class="usdc-icon">
         <img v-if="store.state.fromData?.paymentMethod?.includes('USDC')" src="../../assets/images/information/usdc.png"
           alt="">
-        <img v-else src="../../assets/images/information/pharos-logo.png" alt="">
+        <img v-else src="../../assets/images/information/solana-logo.png" alt="">
       </div>
       <div class="amount-details">
         <p class="amount-title">{{ store.state.fromData?.paymentMethod }}</p>

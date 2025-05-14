@@ -230,31 +230,76 @@ onMounted(() => {
       <div class="step-3-content-hint">(*) required field</div>
       <div class="form">
         <div class="form-item" :class="{ 'error': fromData.email.error }">
-          <input type="text" placeholder="Email *" v-model="fromData.email.value">
+          <input
+            name="email"
+            type="email"
+            placeholder="Email *"
+            v-model="fromData.email.value"
+          >
         </div>
         <div class="form-item" :class="{ 'error': fromData.firstName.error }">
-          <input type="text" placeholder="First Name *" v-model="fromData.firstName.value">
+          <input
+            name="first-name"
+            type="text"
+            placeholder="First Name *"
+            v-model="fromData.firstName.value"
+          >
         </div>
         <div class="form-item" :class="{ 'error': fromData.middleName.error }">
-          <input type="text" placeholder="Middle Name" v-model="fromData.middleName.value">
+          <input
+            name="middle-name"
+            type="text"
+            placeholder="Middle Name"
+            v-model="fromData.middleName.value"
+          >
         </div>
         <div class="form-item" :class="{ 'error': fromData.familyName.error }">
-          <input type="text" placeholder="Family Name *" v-model="fromData.familyName.value">
+          <input
+            name="family-name"
+            type="text"
+            placeholder="Family Name *"
+            v-model="fromData.familyName.value"
+          >
         </div>
         <div class="form-item" :class="{ 'error': fromData.address1.error }">
-          <input type="text" placeholder="Address 1" v-model="fromData.address1.value">
+          <input
+            name="address1"
+            type="text"
+            placeholder="Address 1"
+            v-model="fromData.address1.value"
+          >
         </div>
         <div class="form-item" :class="{ 'error': fromData.address2.error }">
-          <input type="text" placeholder="Address 2" v-model="fromData.address2.value">
+          <input
+            name="address2"
+            type="text"
+            placeholder="Address 2"
+            v-model="fromData.address2.value"
+          >
         </div>
         <div class="form-item" :class="{ 'error': fromData.city.error }">
-          <input type="text" placeholder="City" v-model="fromData.city.value">
+          <input
+            name="city"
+            type="text"
+            placeholder="City"
+            v-model="fromData.city.value"
+          >
         </div>
         <div class="form-item" :class="{ 'error': fromData.state.error }">
-          <input type="text" placeholder="State / Province / Region" v-model="fromData.state.value">
+          <input
+            name="state"
+            type="text"
+            placeholder="State / Province / Region"
+            v-model="fromData.state.value"
+          >
         </div>
         <div class="form-item" :class="{ 'error': fromData.zip.error }">
-          <input type="text" placeholder="Zip Code / Postal Code" v-model="fromData.zip.value">
+          <input
+            name="zip"
+            type="text"
+            placeholder="Zip Code / Postal Code"
+            v-model="fromData.zip.value"
+          >
         </div>
         <div class="form-item">
           <div class="code" @click.stop="showPhoneCodeList = !showPhoneCodeList">
@@ -266,7 +311,12 @@ onMounted(() => {
               </div>
             </div>
           </div>
-          <input type="number" placeholder="Phone number *" v-model="fromData.phone.value">
+          <input
+            name="phone"
+            type="tel"
+            placeholder="Phone number *"
+            v-model="fromData.phone.value"
+          >
         </div>
         <div class="form-item" style="border: none;margin-top: -16px;"></div>
         <div class="form-item" style="border: none;margin-top: -16px;">
@@ -288,10 +338,20 @@ onMounted(() => {
           </div>
         </div>
         <div class="form-item" :class="{ 'error': fromData.identityNumber.error }">
-          <input type="text" placeholder="Student Identity Number from Home Country*" v-model="fromData.identityNumber.value">
+          <input
+            name="identity-number"
+            type="text"
+            placeholder="Student Identity Number from Home Country*"
+            v-model="fromData.identityNumber.value"
+          >
         </div>
         <div class="form-item" :class="{ 'error': fromData.languageName.error }">
-          <input type="text" placeholder="Student Name in Native Language *" v-model="fromData.languageName.value">
+          <input
+            name="student-name"
+            type="text"
+            placeholder="Student Name in Native Language *"
+            v-model="fromData.languageName.value"
+          >
         </div>
       </div>
       <div class="radios">
