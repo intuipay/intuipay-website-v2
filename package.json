@@ -9,8 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@coral-xyz/anchor": "^0.31.1",
     "@reown/appkit": "^1.7.2",
     "@reown/appkit-adapter-ethers5": "^1.7.2",
+    "@reown/appkit-adapter-solana": "^1.7.4",
+    "@solana/spl-token": "^0.4.13",
     "aos": "^3.0.0-beta.6",
     "ethers": "5.7.2",
     "naive-ui": "^2.41.0",

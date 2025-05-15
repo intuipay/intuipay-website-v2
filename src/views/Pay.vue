@@ -1,704 +1,127 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import Web3 from 'web3';
+import { createAppKit, useAppKit, useAppKitAccount, useAppKitProvider } from '@reown/appkit/vue';
+import { useAppKitConnection } from '@reown/appkit-adapter-solana/vue';
+import { SolanaAdapter } from '@reown/appkit-adapter-solana/vue';
+import { solanaDevnet } from '@reown/appkit/networks';
+import { TOKEN_PROGRAM_ID, getAssociatedTokenAddress } from '@solana/spl-token';
+import { PublicKey, Transaction } from '@solana/web3.js';
+import { Buffer } from 'buffer';
 import { useGlobalStore } from '../hooks/globalStore';
-
 import Step1 from '../components/pay/Step-1.vue';
 import Step2 from '../components/pay/Step-2.vue';
 import Step3 from '../components/pay/Step-3.vue';
 import Step from '../components/pay/Step.vue';
 
-const contractAddress = '0xa90d011d49b03b206df84c9ee4b041b4e7a60ef4';
-const tokenAddress = '0xe2f3853d465e4df7bfee0a19d7396286df77272a';
-const universityAddress = '0x8805b2C2cC898eF27B4bB4e960851eCf8529dBB3';
+// --- Project Settings
+const projectId = 'ca8ec99bc67e27356dc3307268308c8b';
+const programId = new PublicKey('dAqnNTcrxTQVsF6LWfZZ5vvchFSQdSnK5NoA9M7FFvb');
+const usdcMint = new PublicKey('4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU');
+const universityPublicKey = new PublicKey('9HTp2Hgcsuur2wtdLA3wH3tLhKyT9mZrYdNhi8EsAVhX');
 
-const tokenAbi = [
-  {
-    "type": "constructor",
-    "inputs": [
-      {
-        "name": "initialSupply",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ],
-    "stateMutability": "nonpayable"
+// --- Reown AppKit Init
+createAppKit({
+  adapters: [new SolanaAdapter()],
+  networks: [solanaDevnet],
+  metadata: {
+    name: 'Intuipay',
+    description: 'Intuipay Payment',
+    url: window.location.origin,
+    icons: ['https://assets.reown.com/reown-profile-pic.png'],
   },
-  {
-    "type": "function",
-    "name": "allowance",
-    "inputs": [
-      { "name": "owner", "type": "address", "internalType": "address" },
-      { "name": "spender", "type": "address", "internalType": "address" }
-    ],
-    "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
-    "stateMutability": "view"
+  projectId,
+  features: {
+    email: false,
+    socials: [],
+    emailShowWallets: true,
   },
-  {
-    "type": "function",
-    "name": "approve",
-    "inputs": [
-      { "name": "spender", "type": "address", "internalType": "address" },
-      { "name": "value", "type": "uint256", "internalType": "uint256" }
-    ],
-    "outputs": [{ "name": "", "type": "bool", "internalType": "bool" }],
-    "stateMutability": "nonpayable"
-  },
-  {
-    "type": "function",
-    "name": "balanceOf",
-    "inputs": [
-      { "name": "account", "type": "address", "internalType": "address" }
-    ],
-    "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
-    "stateMutability": "view"
-  },
-  {
-    "type": "function",
-    "name": "decimals",
-    "inputs": [],
-    "outputs": [{ "name": "", "type": "uint8", "internalType": "uint8" }],
-    "stateMutability": "view"
-  },
-  {
-    "type": "function",
-    "name": "name",
-    "inputs": [],
-    "outputs": [{ "name": "", "type": "string", "internalType": "string" }],
-    "stateMutability": "view"
-  },
-  {
-    "type": "function",
-    "name": "symbol",
-    "inputs": [],
-    "outputs": [{ "name": "", "type": "string", "internalType": "string" }],
-    "stateMutability": "view"
-  },
-  {
-    "type": "function",
-    "name": "totalSupply",
-    "inputs": [],
-    "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
-    "stateMutability": "view"
-  },
-  {
-    "type": "function",
-    "name": "transfer",
-    "inputs": [
-      { "name": "to", "type": "address", "internalType": "address" },
-      { "name": "value", "type": "uint256", "internalType": "uint256" }
-    ],
-    "outputs": [{ "name": "", "type": "bool", "internalType": "bool" }],
-    "stateMutability": "nonpayable"
-  },
-  {
-    "type": "function",
-    "name": "transferFrom",
-    "inputs": [
-      { "name": "from", "type": "address", "internalType": "address" },
-      { "name": "to", "type": "address", "internalType": "address" },
-      { "name": "value", "type": "uint256", "internalType": "uint256" }
-    ],
-    "outputs": [{ "name": "", "type": "bool", "internalType": "bool" }],
-    "stateMutability": "nonpayable"
-  },
-  {
-    "type": "event",
-    "name": "Approval",
-    "inputs": [
-      {
-        "name": "owner",
-        "type": "address",
-        "indexed": true,
-        "internalType": "address"
-      },
-      {
-        "name": "spender",
-        "type": "address",
-        "indexed": true,
-        "internalType": "address"
-      },
-      {
-        "name": "value",
-        "type": "uint256",
-        "indexed": false,
-        "internalType": "uint256"
-      }
-    ],
-    "anonymous": false
-  },
-  {
-    "type": "event",
-    "name": "Transfer",
-    "inputs": [
-      {
-        "name": "from",
-        "type": "address",
-        "indexed": true,
-        "internalType": "address"
-      },
-      {
-        "name": "to",
-        "type": "address",
-        "indexed": true,
-        "internalType": "address"
-      },
-      {
-        "name": "value",
-        "type": "uint256",
-        "indexed": false,
-        "internalType": "uint256"
-      }
-    ],
-    "anonymous": false
-  },
-  {
-    "type": "error",
-    "name": "ERC20InsufficientAllowance",
-    "inputs": [
-      { "name": "spender", "type": "address", "internalType": "address" },
-      { "name": "allowance", "type": "uint256", "internalType": "uint256" },
-      { "name": "needed", "type": "uint256", "internalType": "uint256" }
-    ]
-  },
-  {
-    "type": "error",
-    "name": "ERC20InsufficientBalance",
-    "inputs": [
-      { "name": "sender", "type": "address", "internalType": "address" },
-      { "name": "balance", "type": "uint256", "internalType": "uint256" },
-      { "name": "needed", "type": "uint256", "internalType": "uint256" }
-    ]
-  },
-  {
-    "type": "error",
-    "name": "ERC20InvalidApprover",
-    "inputs": [
-      { "name": "approver", "type": "address", "internalType": "address" }
-    ]
-  },
-  {
-    "type": "error",
-    "name": "ERC20InvalidReceiver",
-    "inputs": [
-      { "name": "receiver", "type": "address", "internalType": "address" }
-    ]
-  },
-  {
-    "type": "error",
-    "name": "ERC20InvalidSender",
-    "inputs": [
-      { "name": "sender", "type": "address", "internalType": "address" }
-    ]
-  },
-  {
-    "type": "error",
-    "name": "ERC20InvalidSpender",
-    "inputs": [
-      { "name": "spender", "type": "address", "internalType": "address" }
-    ]
-  }
-];
-const contractAbi = [
-  { "type": "receive", "stateMutability": "payable" },
-  {
-    "type": "function",
-    "name": "addUniversity",
-    "inputs": [
-      { "name": "_uAddress", "type": "address", "internalType": "address" }
-    ],
-    "outputs": [],
-    "stateMutability": "nonpayable"
-  },
-  {
-    "type": "function",
-    "name": "authedUniversityAddressList",
-    "inputs": [{ "name": "", "type": "address", "internalType": "address" }],
-    "outputs": [{ "name": "", "type": "bool", "internalType": "bool" }],
-    "stateMutability": "view"
-  },
-  {
-    "type": "function",
-    "name": "createOrder",
-    "inputs": [
-      { "name": "_assetHash", "type": "string", "internalType": "string" },
-      { "name": "_usdcAmount", "type": "uint256", "internalType": "uint256" },
-      {
-        "name": "universityAddress",
-        "type": "address",
-        "internalType": "address"
-      }
-    ],
-    "outputs": [],
-    "stateMutability": "nonpayable"
-  },
-  {
-    "type": "function",
-    "name": "getContractBalance",
-    "inputs": [],
-    "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
-    "stateMutability": "view"
-  },
-  {
-    "type": "function",
-    "name": "getOrder",
-    "inputs": [
-      { "name": "_orderId", "type": "uint256", "internalType": "uint256" }
-    ],
-    "outputs": [
-      {
-        "name": "",
-        "type": "tuple",
-        "internalType": "struct IntuiPay.Order",
-        "components": [
-          {
-            "name": "orderType",
-            "type": "uint8",
-            "internalType": "enum IntuiPay.OrderType"
-          },
-          { "name": "assetHash", "type": "string", "internalType": "string" },
-          {
-            "name": "usdcAmount",
-            "type": "uint256",
-            "internalType": "uint256"
-          },
-          {
-            "name": "universityAddress",
-            "type": "address",
-            "internalType": "address"
-          },
-          { "name": "creator", "type": "address", "internalType": "address" }
-        ]
-      }
-    ],
-    "stateMutability": "view"
-  },
-  {
-    "type": "function",
-    "name": "initialize",
-    "inputs": [
-      { "name": "usdcAddress", "type": "address", "internalType": "address" }
-    ],
-    "outputs": [],
-    "stateMutability": "nonpayable"
-  },
-  {
-    "type": "function",
-    "name": "isUniversityAuthorized",
-    "inputs": [
-      { "name": "_uAddress", "type": "address", "internalType": "address" }
-    ],
-    "outputs": [{ "name": "", "type": "bool", "internalType": "bool" }],
-    "stateMutability": "view"
-  },
-  {
-    "type": "function",
-    "name": "orderBook",
-    "inputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
-    "outputs": [
-      {
-        "name": "orderType",
-        "type": "uint8",
-        "internalType": "enum IntuiPay.OrderType"
-      },
-      { "name": "assetHash", "type": "string", "internalType": "string" },
-      { "name": "usdcAmount", "type": "uint256", "internalType": "uint256" },
-      {
-        "name": "universityAddress",
-        "type": "address",
-        "internalType": "address"
-      },
-      { "name": "creator", "type": "address", "internalType": "address" }
-    ],
-    "stateMutability": "view"
-  },
-  {
-    "type": "function",
-    "name": "orderId",
-    "inputs": [],
-    "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
-    "stateMutability": "view"
-  },
-  {
-    "type": "function",
-    "name": "owner",
-    "inputs": [],
-    "outputs": [{ "name": "", "type": "address", "internalType": "address" }],
-    "stateMutability": "view"
-  },
-  {
-    "type": "function",
-    "name": "pause",
-    "inputs": [],
-    "outputs": [],
-    "stateMutability": "nonpayable"
-  },
-  {
-    "type": "function",
-    "name": "paused",
-    "inputs": [],
-    "outputs": [{ "name": "", "type": "bool", "internalType": "bool" }],
-    "stateMutability": "view"
-  },
-  {
-    "type": "function",
-    "name": "payOrder",
-    "inputs": [
-      { "name": "_orderId", "type": "uint256", "internalType": "uint256" }
-    ],
-    "outputs": [],
-    "stateMutability": "nonpayable"
-  },
-  {
-    "type": "function",
-    "name": "uniPay",
-    "inputs": [
-      { "name": "_assetHash", "type": "string", "internalType": "string" },
-      { "name": "_usdcAmount", "type": "uint256", "internalType": "uint256" },
-      {
-        "name": "universityAddress",
-        "type": "address",
-        "internalType": "address"
-      }
-    ],
-    "outputs": [],
-    "stateMutability": "nonpayable"
-  },
-  {
-    "type": "function",
-    "name": "unpause",
-    "inputs": [],
-    "outputs": [],
-    "stateMutability": "nonpayable"
-  },
-  {
-    "type": "function",
-    "name": "updateOwner",
-    "inputs": [
-      { "name": "newOwner", "type": "address", "internalType": "address" }
-    ],
-    "outputs": [],
-    "stateMutability": "nonpayable"
-  },
-  {
-    "type": "function",
-    "name": "updateUniversity",
-    "inputs": [
-      { "name": "_uAddress", "type": "address", "internalType": "address" },
-      { "name": "_authorized", "type": "bool", "internalType": "bool" }
-    ],
-    "outputs": [],
-    "stateMutability": "nonpayable"
-  },
-  {
-    "type": "function",
-    "name": "usdcToken",
-    "inputs": [],
-    "outputs": [
-      { "name": "", "type": "address", "internalType": "contract IERC20" }
-    ],
-    "stateMutability": "view"
-  },
-  {
-    "type": "function",
-    "name": "withdraw",
-    "inputs": [
-      {
-        "name": "_targetAddress",
-        "type": "address",
-        "internalType": "address"
-      },
-      { "name": "_amount", "type": "uint256", "internalType": "uint256" }
-    ],
-    "outputs": [],
-    "stateMutability": "nonpayable"
-  },
-  {
-    "type": "event",
-    "name": "ContractPaused",
-    "inputs": [
-      {
-        "name": "account",
-        "type": "address",
-        "indexed": false,
-        "internalType": "address"
-      }
-    ],
-    "anonymous": false
-  },
-  {
-    "type": "event",
-    "name": "ContractUnpaused",
-    "inputs": [
-      {
-        "name": "account",
-        "type": "address",
-        "indexed": false,
-        "internalType": "address"
-      }
-    ],
-    "anonymous": false
-  },
-  {
-    "type": "event",
-    "name": "Initialized",
-    "inputs": [
-      {
-        "name": "version",
-        "type": "uint64",
-        "indexed": false,
-        "internalType": "uint64"
-      }
-    ],
-    "anonymous": false
-  },
-  {
-    "type": "event",
-    "name": "OrderCreated",
-    "inputs": [
-      {
-        "name": "orderId",
-        "type": "uint256",
-        "indexed": true,
-        "internalType": "uint256"
-      },
-      {
-        "name": "assetHash",
-        "type": "string",
-        "indexed": false,
-        "internalType": "string"
-      },
-      {
-        "name": "creator",
-        "type": "address",
-        "indexed": false,
-        "internalType": "address"
-      }
-    ],
-    "anonymous": false
-  },
-  {
-    "type": "event",
-    "name": "OrderPaid",
-    "inputs": [
-      {
-        "name": "orderId",
-        "type": "uint256",
-        "indexed": true,
-        "internalType": "uint256"
-      },
-      {
-        "name": "payer",
-        "type": "address",
-        "indexed": false,
-        "internalType": "address"
-      }
-    ],
-    "anonymous": false
-  },
-  {
-    "type": "event",
-    "name": "OwnerUpdated",
-    "inputs": [
-      {
-        "name": "previousOwner",
-        "type": "address",
-        "indexed": true,
-        "internalType": "address"
-      },
-      {
-        "name": "newOwner",
-        "type": "address",
-        "indexed": true,
-        "internalType": "address"
-      }
-    ],
-    "anonymous": false
-  },
-  {
-    "type": "event",
-    "name": "Paused",
-    "inputs": [
-      {
-        "name": "account",
-        "type": "address",
-        "indexed": false,
-        "internalType": "address"
-      }
-    ],
-    "anonymous": false
-  },
-  {
-    "type": "event",
-    "name": "UniversityUpdated",
-    "inputs": [
-      {
-        "name": "university",
-        "type": "address",
-        "indexed": true,
-        "internalType": "address"
-      },
-      {
-        "name": "isAuthorized",
-        "type": "bool",
-        "indexed": false,
-        "internalType": "bool"
-      }
-    ],
-    "anonymous": false
-  },
-  {
-    "type": "event",
-    "name": "Unpaused",
-    "inputs": [
-      {
-        "name": "account",
-        "type": "address",
-        "indexed": false,
-        "internalType": "address"
-      }
-    ],
-    "anonymous": false
-  },
-  {
-    "type": "event",
-    "name": "Withdraw",
-    "inputs": [
-      {
-        "name": "targetAddress",
-        "type": "address",
-        "indexed": true,
-        "internalType": "address"
-      },
-      {
-        "name": "withdrawAmount",
-        "type": "uint256",
-        "indexed": false,
-        "internalType": "uint256"
-      }
-    ],
-    "anonymous": false
-  },
-  { "type": "error", "name": "EnforcedPause", "inputs": [] },
-  { "type": "error", "name": "ExpectedPause", "inputs": [] },
-  { "type": "error", "name": "InvalidInitialization", "inputs": [] },
-  { "type": "error", "name": "NotInitializing", "inputs": [] },
-  { "type": "error", "name": "ReentrancyGuardReentrantCall", "inputs": [] }
-];
+});
 
-const web3 = new Web3(window.ethereum);
-const account = ref('');
-
+// --- Hooks
+const modal = useAppKit();
+const { address, isConnected } = useAppKitAccount();
+const { walletProvider } = useAppKitProvider('solana');
+const { connection } = useAppKitConnection();
 const { store, setFromData } = useGlobalStore();
 const route = useRoute();
 const router = useRouter();
 
+// --- State
 const step = ref(1);
 const loading = ref(false);
 const payment = ref({});
 const showCancelModal = ref(false);
 
-const connect = async () => {
-  try {
-    if (!window.ethereum) {
-      alert('MetaMask not detected!');
-      return;
-    }
-    await window.ethereum.request({ method: 'eth_requestAccounts' });
-    const accounts = await web3.eth.getAccounts();
-    if (!accounts || accounts.length === 0) {
-      throw new Error('No accounts found');
-    }
-    account.value = accounts[0];
-    store.state.fromData.account = accounts[0];
-    setFromData({ ...store.state.fromData });
-    console.log('Connected wallet:', accounts[0]);
-  } catch (e) {
-    console.error('Wallet connection failed', e);
-  }
-};
+// --- Helper: Build Correct Instruction Data
+const uniPayDiscriminator = Buffer.from('b4f23c24c08da84c', 'hex');
+function createUniPayInstructionData(amount) {
+  const amountBuffer = Buffer.alloc(8);
+  amountBuffer.writeBigUInt64LE(BigInt(amount));
+  return Buffer.concat([uniPayDiscriminator, amountBuffer]);
+}
 
-const approve = async (amount) => {
-  const fromData = store.state.fromData;
-  if (!account.value) throw new Error('No account connected');
-  const tokenContract = new web3.eth.Contract(tokenAbi, tokenAddress);
-  await tokenContract.methods.approve(
-    contractAddress,
-    web3.utils.toWei(amount.toString(), 'mwei') // Use 'mwei' for USDC 6 decimals
-  ).send({ from: account.value, gas: 200000 });
-};
-
+// --- Payment
 const pay = async () => {
   if (loading.value) return;
   loading.value = true;
-
   try {
-    if (!account.value) {
-      await connect();
-      if (!account.value) throw new Error('No account connected');
+    if (!address || !connection) {
+      throw new Error('Wallet not connected.');
     }
 
-    payment.value.paidOn = new Date().toLocaleString();
+    const authority = new PublicKey(address);
+    const userTokenAccount = await getAssociatedTokenAddress(usdcMint, authority);
+    const universityTokenAccount = await getAssociatedTokenAddress(usdcMint, universityPublicKey);
+
     const fromData = store.state.fromData;
+    if (!fromData || !fromData.usdcAmount) {
+      throw new Error('Missing payment details.');
+    }
 
-    await approve(fromData.usdcAmount);
+    const usdcAmount = Number(fromData.usdcAmount);
+    const amount = BigInt(Math.floor(usdcAmount * 1_000_000)); // USDC 6 decimals
 
-    const contract = new web3.eth.Contract(contractAbi, contractAddress);
-    const orderId = await contract.methods.orderId().call();
-    payment.value.orderId = orderId;
+    const latestBlockhash = await connection.getLatestBlockhash();
+    const instructionData = createUniPayInstructionData(amount);
 
-    // Removed createOrder step — relying solely on uniPay()
-
-    // Debugging: log USDC balance and arguments before transaction
-    const tokenContract = new web3.eth.Contract(tokenAbi, tokenAddress);
-    const balance = await tokenContract.methods.balanceOf(account.value).call();
-    const required = web3.utils.toWei(fromData.usdcAmount.toString(), 'mwei');
-    console.log('USDC balance:', balance);
-    console.log('Required amount:', required);
-    console.log('Calling uniPay with:', {
-      assetHash: payment.value.id,
-      amount: web3.utils.toWei(fromData.usdcAmount.toString(), 'mwei'),
-      university: universityAddress
+    const transaction = new Transaction({
+      feePayer: authority,
+      recentBlockhash: latestBlockhash.blockhash,
+    }).add({
+      programId,
+      keys: [
+        { pubkey: authority, isSigner: true, isWritable: true },
+        { pubkey: userTokenAccount, isSigner: false, isWritable: true },
+        { pubkey: universityTokenAccount, isSigner: false, isWritable: true },
+        { pubkey: TOKEN_PROGRAM_ID, isSigner: false, isWritable: false },
+      ],
+      data: instructionData,
     });
 
-    // Try-catch around uniPay for precise error tracing
-    let tx;
-    try {
-      tx = await contract.methods.uniPay(
-        payment.value.id,
-        web3.utils.toWei(fromData.usdcAmount.toString(), 'mwei'),
-        universityAddress
-      ).send({ from: account.value, gas: 1200000 });
-    } catch (uniPayError) {
-      console.error('uniPay reverted:', uniPayError);
-      throw uniPayError;
-    }
+    const signature = await walletProvider.sendTransaction(transaction, connection);
+    console.log('✅ Payment sent, tx signature:', signature);
 
-    payment.value.status = 'In Progress';
-    payment.value.remittanceDate = new Date().toLocaleString();
-    payment.value.tx = tx;
-    step.value = 2;
-
+    payment.value.paidOn = new Date().toLocaleString();
     payment.value.status = 'Payment Successful';
+    payment.value.remittanceDate = new Date().toLocaleString();
     payment.value.accountingDate = new Date().toLocaleString();
     step.value = 3;
 
-    const payments = JSON.parse(localStorage.getItem('payments') || '[]');
-    payments.forEach((item, index) => {
-      if (item.id === payment.value.id) {
-        payments[index] = payment.value;
-      }
-    });
-    localStorage.setItem('payments', JSON.stringify(payments));
   } catch (error) {
-    console.error('Payment failed:', error);
+    console.error('❌ Payment failed:', error);
+    payment.value.status = 'Payment Failed';
   }
-
   loading.value = false;
 };
 
-const cancelPayment = () => {
+// --- Connect Wallet
+const connect = () => {
+  modal.open();
+};
+
+// --- Cancel Payment
+const cancelPayment = async () => {
   const localPayments = JSON.parse(localStorage.getItem('payments') || '[]');
   const index = localPayments.findIndex((item) => item.id === payment.value.id);
   if (index !== -1) {
@@ -709,20 +132,38 @@ const cancelPayment = () => {
   router.push('/');
 };
 
+// --- On Mount
 onMounted(() => {
   const id = route.params.id;
+  if (!id) {
+    router.push('/');
+    return;
+  }
   const localPayments = JSON.parse(localStorage.getItem('payments') || '[]');
-  const found = localPayments.find((item) => item.id === id);
-  if (!found) return router.push('/');
-  payment.value = found;
-  setFromData(found);
-  account.value = found.account || store.state.fromData.account || '';
+  const foundPayment = localPayments.find((item) => item.id === id);
+
+  if (foundPayment) {
+    payment.value = foundPayment;
+    setFromData(foundPayment);
+  } else {
+    router.push('/');
+  }
 
   if (route.query.step) {
     step.value = Number(route.query.step);
   }
 });
+
+const handlePay = async () => {
+  if (!isConnected) {
+    console.log('Wallet not connected, opening modal...');
+    modal.open();
+    return;
+  }
+  await pay();
+};
 </script>
+
 
 
 <template>
@@ -732,7 +173,7 @@ onMounted(() => {
 
       <div class="pay-main">
         <div class="pay-main-left">
-          <Step1 v-if="step === 1" :loading="loading" @pay="pay" @connect="connect" />
+          <Step1 v-if="step === 1" :loading="loading" @pay="handlepay" @connect="connect" />
           <Step2 v-else-if="step === 2" :payment="payment" />
           <Step3 v-else-if="step === 3" :payment="payment" />
         </div>
