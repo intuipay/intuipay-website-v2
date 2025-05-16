@@ -9,6 +9,7 @@ import { TOKEN_PROGRAM_ID, getAssociatedTokenAddress } from '@solana/spl-token';
 import { PublicKey, Transaction } from '@solana/web3.js';
 import { Buffer } from 'buffer';
 import { useGlobalStore } from '../hooks/globalStore';
+
 import Step1 from '../components/pay/Step-1.vue';
 import Step2 from '../components/pay/Step-2.vue';
 import Step3 from '../components/pay/Step-3.vue';
@@ -47,13 +48,11 @@ const { store, setFromData } = useGlobalStore();
 const route = useRoute();
 const router = useRouter();
 
-// --- State
 const step = ref(1);
 const loading = ref(false);
 const payment = ref({});
 const showCancelModal = ref(false);
 
-// --- Helper: Build Correct Instruction Data
 const uniPayDiscriminator = Buffer.from('b4f23c24c08da84c', 'hex');
 function createUniPayInstructionData(amount) {
   const amountBuffer = Buffer.alloc(8);
@@ -61,46 +60,51 @@ function createUniPayInstructionData(amount) {
   return Buffer.concat([uniPayDiscriminator, amountBuffer]);
 }
 
-// --- Payment
 const pay = async () => {
   if (loading.value) return;
   loading.value = true;
   try {
-    if (!address || !connection) {
-      throw new Error('Wallet not connected.');
-    }
-
-    const authority = new PublicKey(address);
-    const userTokenAccount = await getAssociatedTokenAddress(usdcMint, authority);
-    const universityTokenAccount = await getAssociatedTokenAddress(usdcMint, universityPublicKey);
-
     const fromData = store.state.fromData;
+
     if (!fromData || !fromData.usdcAmount) {
       throw new Error('Missing payment details.');
     }
 
+    const authority = new PublicKey(address);
     const usdcAmount = Number(fromData.usdcAmount);
-    const amount = BigInt(Math.floor(usdcAmount * 1_000_000)); // USDC 6 decimals
+    const amount = BigInt(Math.floor(usdcAmount * 1_000_000)); // USDC decimals
+
+    const fromTokenAccount = await getAssociatedTokenAddress(
+      usdcMint,
+      authority
+    );
+
+    const toTokenAccount = await getAssociatedTokenAddress(
+      usdcMint,
+      universityPublicKey
+    );
 
     const latestBlockhash = await connection.getLatestBlockhash();
-    const instructionData = createUniPayInstructionData(amount);
 
     const transaction = new Transaction({
       feePayer: authority,
       recentBlockhash: latestBlockhash.blockhash,
-    }).add({
+    });
+
+    transaction.add({
       programId,
       keys: [
         { pubkey: authority, isSigner: true, isWritable: true },
-        { pubkey: userTokenAccount, isSigner: false, isWritable: true },
-        { pubkey: universityTokenAccount, isSigner: false, isWritable: true },
+        { pubkey: fromTokenAccount, isSigner: false, isWritable: true },
+        { pubkey: toTokenAccount, isSigner: false, isWritable: true },
         { pubkey: TOKEN_PROGRAM_ID, isSigner: false, isWritable: false },
       ],
-      data: instructionData,
+      data: createUniPayInstructionData(amount),
     });
 
     const signature = await walletProvider.sendTransaction(transaction, connection);
-    console.log('✅ Payment sent, tx signature:', signature);
+
+    console.log('✅ Payment successful, Tx Signature:', signature);
 
     payment.value.paidOn = new Date().toLocaleString();
     payment.value.status = 'Payment Successful';
@@ -115,12 +119,10 @@ const pay = async () => {
   loading.value = false;
 };
 
-// --- Connect Wallet
 const connect = () => {
   modal.open();
 };
 
-// --- Cancel Payment
 const cancelPayment = async () => {
   const localPayments = JSON.parse(localStorage.getItem('payments') || '[]');
   const index = localPayments.findIndex((item) => item.id === payment.value.id);
@@ -132,7 +134,6 @@ const cancelPayment = async () => {
   router.push('/');
 };
 
-// --- On Mount
 onMounted(() => {
   const id = route.params.id;
   if (!id) {
@@ -173,7 +174,7 @@ const handlePay = async () => {
 
       <div class="pay-main">
         <div class="pay-main-left">
-          <Step1 v-if="step === 1" :loading="loading" @pay="handlepay" @connect="connect" />
+          <Step1 v-if="step === 1" :loading="loading" @pay="pay" @connect="connect" />
           <Step2 v-else-if="step === 2" :payment="payment" />
           <Step3 v-else-if="step === 3" :payment="payment" />
         </div>
